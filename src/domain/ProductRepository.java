@@ -6,6 +6,7 @@ import java.util.Set;
 public class ProductRepository {
     private static ProductRepository instance;
     private static final Set<Product> products = new HashSet<>();
+    private static int sequence = 0;
 
     private ProductRepository() {
     }
@@ -23,6 +24,7 @@ public class ProductRepository {
     }
 
     public void saveProduct(Product product) {
+        product.setId(++sequence);
         products.add(product);
     }
 

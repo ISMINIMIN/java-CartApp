@@ -11,14 +11,17 @@ public class Product {
         this.name = name;
     }
 
-    public Product(int id, String name, int price) {
-        this.id = id;
+    public Product(String name, int price) {
         this.name = name;
         this.price = price;
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -43,6 +46,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return name + " " + price;
+        return id + " " + name + " " + price;
     }
 }
