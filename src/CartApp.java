@@ -3,7 +3,6 @@ import domain.ProductRepository;
 import service.CartService;
 
 public class CartApp {
-    static int seq = 0;
     static ProductRepository productRepository = ProductRepository.getInstance();
 
     public static void main(String[] args) {
@@ -12,10 +11,10 @@ public class CartApp {
     }
 
     private static void testCodeForProduct() {
-        productRepository.saveProduct(new Product(++seq, "귤", 1000));
-        productRepository.saveProduct(new Product(++seq, "자두", 2000));
-        productRepository.saveProduct(new Product(++seq, "토마토", 3000));
-        productRepository.saveProduct(new Product(++seq, "토마토", 5000));
+        productRepository.saveProduct(new Product("귤", 1000));
+        productRepository.saveProduct(new Product("자두", 2000));
+        productRepository.saveProduct(new Product("토마토", 3000));
+        productRepository.saveProduct(new Product("토마토", 5000));
 
         productRepository.showProductList();
     }
