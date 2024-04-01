@@ -25,6 +25,7 @@ public class CartApp {
         // 장바구니 비었을 때
         myCart.showCartList();
         myCart.showTotalPrice();
+        myCart.removeProduct(removeItemDataForTest());
 
         // 상품추가
         myCart.addProduct(itemDataForTest());
@@ -51,7 +52,6 @@ public class CartApp {
         return new Object[][] {
                 new Object[]{"귤", 1},
                 new Object[]{"자두", 4},
-                new Object[]{"자두", 3},
                 new Object[]{"자두", 2}
         };
     }
