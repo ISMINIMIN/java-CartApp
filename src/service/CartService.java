@@ -41,7 +41,7 @@ public class CartService {
                 continue;
             }
 
-            cartList.put(name, cartList.getOrDefault(name, 0) + count);
+            cartList.merge(name, count, Integer::sum);
             System.out.println("[" + name + "] 상품을 " + count + "개 담았습니다.");
         }
         System.out.println();
@@ -49,6 +49,11 @@ public class CartService {
 
     public void removeProduct(Object[][] removeItems) {
         System.out.println("[상품삭제]");
+
+        if(cartList.isEmpty()) {
+            System.out.println(EMPTY_CART);
+            return;
+        }
 
         for(Object[] item : removeItems) {
             String name = (String) item[0];
@@ -59,18 +64,14 @@ public class CartService {
                 continue;
             }
 
-            if(cartList.get(name) < count) {
-                System.out.println("현재 장바구니에 [" + name + "] 상품이 " + cartList.get(name) + "개 담겨있어 " + count + "개를 삭제할 수 없습니다.");
-                continue;
-            }
+            cartList.merge(name, count, ((i1, i2) -> Math.max(0, i1 - i2)));
 
-            if(cartList.get(name) ==  count) {
+            if(cartList.get(name) == 0) {
                 cartList.remove(name);
-                System.out.println("[" + name + "] 상품 " + count + "개가 삭제되었습니다.");
+                System.out.println("[" + name + "] 상품이 모두 삭제되었습니다.");
                 continue;
             }
 
-            cartList.put(name, cartList.get(name) - count);
             System.out.println("[" + name + "] 상품 " + count + "개가 삭제되었습니다.");
         }
         System.out.println();
